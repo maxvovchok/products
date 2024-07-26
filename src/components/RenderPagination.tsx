@@ -39,7 +39,7 @@ export const RenderPagination: React.FC<Props> = ({
           sx={{
             "& .MuiPaginationItem-root": {
               mx: 0.5,
-              fontSize: { xs: "0.75rem", sm: "1rem" }, // Менший шрифт для мобільних пристроїв
+              fontSize: { xs: "0.75rem", sm: "1rem" },
             },
             "& .MuiPaginationItem-ellipsis": {
               fontSize: { xs: "0.75rem", sm: "1rem" },
