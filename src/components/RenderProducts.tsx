@@ -57,8 +57,10 @@ export const RenderProducts: React.FC<RenderProductsProps> = ({ products }) => {
                   image={product.images[0]}
                   alt={product.title}
                   sx={{
-                    height: 200,
+                    height: 300,
                     objectFit: "cover",
+                    borderTopLeftRadius: 8,
+                    borderTopRightRadius: 8,
                   }}
                 />
                 <CardContent
@@ -66,6 +68,7 @@ export const RenderProducts: React.FC<RenderProductsProps> = ({ products }) => {
                     display: "flex",
                     flexDirection: "column",
                     flexGrow: 1,
+                    padding: 2,
                   }}
                 >
                   <Typography
