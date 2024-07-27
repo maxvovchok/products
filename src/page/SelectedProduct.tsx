@@ -61,10 +61,10 @@ export const SelectedProduct = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start", // Align items to the start (left) of the container
+          alignItems: "flex-start",
           mt: 4,
           mb: 4,
-          px: 2, // Padding on the x-axis (left and right)
+          px: 2,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
