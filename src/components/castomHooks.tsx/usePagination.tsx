@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProductsLimit } from "../services/getProducts";
+import { getProductsLimit } from "../../services/getProducts";
 
 export const usePagination = (itemsPerPage: number) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,14 +17,6 @@ export const usePagination = (itemsPerPage: number) => {
     fetchLimitedProducts((currentPage - 1) * itemsPerPage, itemsPerPage);
   }, [itemsPerPage, currentPage]);
 
-  const nextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
-  };
-
   const goToPage = (page: number) => {
     setCurrentPage(page);
   };
@@ -33,8 +25,6 @@ export const usePagination = (itemsPerPage: number) => {
     currentPage,
     totalPages,
     products,
-    nextPage,
-    prevPage,
     goToPage,
   };
 };

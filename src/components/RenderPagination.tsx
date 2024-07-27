@@ -4,16 +4,12 @@ import { Pagination, Stack, Box, Typography } from "@mui/material";
 interface Props {
   currentPage: number;
   totalPages: number;
-  nextPage: () => void;
-  prevPage: () => void;
   goToPage: (page: number) => void;
 }
 
 export const RenderPagination: React.FC<Props> = ({
   currentPage,
   totalPages,
-  nextPage,
-  prevPage,
   goToPage,
 }) => {
   return (
@@ -26,11 +22,18 @@ export const RenderPagination: React.FC<Props> = ({
         mb: 4,
       }}
     >
-      <Stack spacing={2} direction="row">
+      <Stack
+        spacing={2}
+        direction="row"
+        sx={{
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         <Pagination
           count={totalPages}
           page={currentPage}
-          onChange={(event, page) => goToPage(page)}
+          onChange={(_, page) => goToPage(page)}
           color="primary"
           siblingCount={1}
           boundaryCount={1}
@@ -38,8 +41,10 @@ export const RenderPagination: React.FC<Props> = ({
           showLastButton
           sx={{
             "& .MuiPaginationItem-root": {
-              mx: 0.5,
+              mx: { xs: 0.2, sm: 0.5 },
               fontSize: { xs: "0.75rem", sm: "1rem" },
+              minWidth: { xs: "1.5rem", sm: "2rem" },
+              minHeight: { xs: "1.5rem", sm: "2rem" },
             },
             "& .MuiPaginationItem-ellipsis": {
               fontSize: { xs: "0.75rem", sm: "1rem" },
@@ -47,19 +52,11 @@ export const RenderPagination: React.FC<Props> = ({
           }}
         />
       </Stack>
-      <Box sx={{ mt: 2 }}>
+      <Box sx={{ mt: 2, textAlign: "center" }}>
         <Typography variant="body2" color="text.secondary">
           Page {currentPage} of {totalPages}
         </Typography>
       </Box>
-      <Box
-        sx={{
-          mt: 2,
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-        }}
-      ></Box>
     </Box>
   );
 };

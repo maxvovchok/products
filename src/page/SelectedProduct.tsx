@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 import Notiflix from "notiflix";
+import { Button, Box, Typography } from "@mui/material";
 import { RenderProductDetails } from "../components/RenderProductDetails";
 import { getProductsLimit } from "../services/getProducts";
 
@@ -21,6 +22,8 @@ export const SelectedProduct = () => {
   const { productId } = useParams<{ productId: string }>();
   const id = Number(productId);
   const itemsPerPage = 10;
+
+  const location = useLocation();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -52,5 +55,45 @@ export const SelectedProduct = () => {
     fetchProduct();
   }, [id]);
 
-  return product ? <RenderProductDetails product={product} /> : null;
+  return (
+    <main>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start", // Align items to the start (left) of the container
+          mt: 4,
+          mb: 4,
+          px: 2, // Padding on the x-axis (left and right)
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <Link
+            to={location.state?.from || "/"}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{
+                textTransform: "none",
+                borderRadius: "8px",
+                padding: "8px 16px",
+                fontSize: "1rem",
+              }}
+            >
+              Go Back
+            </Button>
+          </Link>
+        </Box>
+        {product ? (
+          <RenderProductDetails product={product} />
+        ) : (
+          <Typography variant="h6" color="textSecondary">
+            Product not found.
+          </Typography>
+        )}
+      </Box>
+    </main>
+  );
 };

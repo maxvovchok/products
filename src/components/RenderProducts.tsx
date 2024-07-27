@@ -13,7 +13,7 @@ import {
 interface Products {
   id: number;
   title: string;
-  images: any;
+  thumbnail: any;
   category: string;
   brand: string;
   price: number;
@@ -27,6 +27,7 @@ interface RenderProductsProps {
 
 export const RenderProducts: React.FC<RenderProductsProps> = ({ products }) => {
   const location = useLocation();
+  console.log("productPage", location);
 
   return (
     <Box sx={{ padding: 2 }}>
@@ -54,7 +55,7 @@ export const RenderProducts: React.FC<RenderProductsProps> = ({ products }) => {
               >
                 <CardMedia
                   component="img"
-                  image={product.images[0]}
+                  image={product.thumbnail}
                   alt={product.title}
                   sx={{
                     height: 300,

@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import { ProductSlider } from "./ProductSlider";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
@@ -79,24 +79,6 @@ export const RenderProductDetails = ({ product }: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ maxWidth: 1200, margin: "auto", padding: 2 }}>
-        {location.state && location.state.from && (
-          <Box sx={{ mb: 2 }}>
-            {/* <Link
-              to={location.state.from}
-              style={{
-                textDecoration: "none",
-                color: "blue",
-                fontSize: "1rem",
-                padding: "8px 16px",
-                border: "1px solid blue",
-                borderRadius: "4px",
-                display: "inline-block",
-              }}
-            >
-              Go to back
-            </Link> */}
-          </Box>
-        )}
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <Box
