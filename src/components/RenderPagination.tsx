@@ -59,36 +59,7 @@ export const RenderPagination: React.FC<Props> = ({
           justifyContent: "space-between",
           width: "100%",
         }}
-      >
-        <button
-          onClick={prevPage}
-          disabled={currentPage === 1}
-          style={{
-            background: "none",
-            border: "none",
-            color: "blue",
-            cursor: "pointer",
-            fontSize: "1rem",
-            marginRight: "auto",
-          }}
-        >
-          &laquo; Previous
-        </button>
-        <button
-          onClick={nextPage}
-          disabled={currentPage === totalPages}
-          style={{
-            background: "none",
-            border: "none",
-            color: "blue",
-            cursor: "pointer",
-            fontSize: "1rem",
-            marginLeft: "auto",
-          }}
-        >
-          Next &raquo;
-        </button>
-      </Box>
+      ></Box>
     </Box>
   );
 };
