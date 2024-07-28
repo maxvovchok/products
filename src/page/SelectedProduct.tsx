@@ -2,8 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useParams, Link } from "react-router-dom";
 import Notiflix from "notiflix";
 import { Button, Box, Typography, Container } from "@mui/material";
-import { RenderProductDetails } from "../components/RenderProductDetails";
+import { RenderProductDetails } from "../components/ProductDetails";
 import { getProductsLimit } from "../services/getProducts";
+import { Reviews } from "../components/Reviews";
+
+type Review = {
+  reviewerName: string;
+  rating: number;
+  comment: string;
+  date: string;
+};
 
 type Product = {
   id: number;
@@ -15,6 +23,7 @@ type Product = {
   category: string;
   description: string;
   stock: number;
+  reviews: Review[];
 };
 
 export const SelectedProduct = () => {
@@ -78,7 +87,16 @@ export const SelectedProduct = () => {
           </Link>
         </Box>
         {product ? (
-          <RenderProductDetails product={product} />
+          <>
+            <RenderProductDetails product={product} />
+            {product.reviews.length > 0 ? (
+              <Reviews reviews={product.reviews} />
+            ) : (
+              <Typography variant="h6" color="textSecondary">
+                No reviews found.
+              </Typography>
+            )}
+          </>
         ) : (
           <Typography variant="h6" color="textSecondary">
             Product not found.

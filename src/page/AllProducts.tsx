@@ -1,6 +1,6 @@
-import { RenderProducts } from "../components/RenderProducts";
+import { RenderProducts } from "../components/Products";
 import { usePagination } from "../components/castomHooks.tsx/usePagination";
-import { RenderPagination } from "../components/RenderPagination";
+import { RenderPagination } from "../components/Pagination";
 
 export const AllProducts = () => {
   const { currentPage, totalPages, products, goToPage } = usePagination(10);

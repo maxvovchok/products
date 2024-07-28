@@ -1,17 +1,17 @@
 import React from "react";
 import { Pagination, Stack, Box, Typography } from "@mui/material";
 
-interface Props {
+type Props = {
   currentPage: number;
   totalPages: number;
   goToPage: (page: number) => void;
-}
+};
 
-export const RenderPagination: React.FC<Props> = ({
+export const RenderPagination = ({
   currentPage,
   totalPages,
   goToPage,
-}) => {
+}: Props) => {
   return (
     <Box
       sx={{

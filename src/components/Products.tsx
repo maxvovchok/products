@@ -10,7 +10,7 @@ import {
   Grid,
 } from "@mui/material";
 
-interface Products {
+type Products = {
   id: number;
   title: string;
   thumbnail: string;
@@ -19,15 +19,14 @@ interface Products {
   price: number;
   discountPercentage: number;
   rating: number;
-}
+};
 
-interface RenderProductsProps {
+type RenderProductsProps = {
   products: Products[];
-}
+};
 
-export const RenderProducts: React.FC<RenderProductsProps> = ({ products }) => {
+export const RenderProducts = ({ products }: RenderProductsProps) => {
   const location = useLocation();
-  console.log("productPage", location);
 
   return (
     <Box sx={{ padding: 2 }}>
