@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams, Link } from "react-router-dom";
 import Notiflix from "notiflix";
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Box, Typography, Container } from "@mui/material";
 import { RenderProductDetails } from "../components/RenderProductDetails";
 import { getProductsLimit } from "../services/getProducts";
 
@@ -56,17 +56,8 @@ export const SelectedProduct = () => {
   }, [id]);
 
   return (
-    <main>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          mt: 4,
-          mb: 4,
-          px: 2,
-        }}
-      >
+    <Container maxWidth="lg">
+      <Box sx={{ mt: 4, mb: 4 }}>
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
           <Link
             to={location.state?.from || "/"}
@@ -94,6 +85,6 @@ export const SelectedProduct = () => {
           </Typography>
         )}
       </Box>
-    </main>
+    </Container>
   );
 };

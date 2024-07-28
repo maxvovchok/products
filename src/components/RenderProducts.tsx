@@ -13,7 +13,7 @@ import {
 interface Products {
   id: number;
   title: string;
-  thumbnail: any;
+  thumbnail: string;
   category: string;
   brand: string;
   price: number;
@@ -58,10 +58,8 @@ export const RenderProducts: React.FC<RenderProductsProps> = ({ products }) => {
                   image={product.thumbnail}
                   alt={product.title}
                   sx={{
-                    height: 300,
+                    height: "300px",
                     objectFit: "cover",
-                    borderTopLeftRadius: 8,
-                    borderTopRightRadius: 8,
                   }}
                 />
                 <CardContent

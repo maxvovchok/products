@@ -1,92 +1,69 @@
+import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useMediaQuery, useTheme, Box } from "@mui/material";
 
 type ProductSliderProps = {
   images: string[];
 };
 
-const NextArrow = (props: any) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      onClick={onClick}
-      style={{
-        ...style,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "40px",
-        height: "40px",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        borderRadius: "50%",
-        color: "white",
-        zIndex: 1,
-        cursor: "pointer",
-        right: "10px",
-        top: "50%",
-        transform: "translateY(-50%)",
-      }}
-    ></div>
-  );
-};
+const Arrow = ({
+  className,
+  style,
+  onClick,
+  direction,
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  direction: "next" | "prev";
+}) => (
+  <div
+    className={className}
+    onClick={onClick}
+    style={{
+      ...style,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "40px",
+      height: "40px",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      borderRadius: "50%",
+      color: "white",
+      zIndex: 1,
+      cursor: "pointer",
+      [direction === "next" ? "right" : "left"]: "10px",
+      top: "50%",
+      transform: "translateY(-50%)",
+    }}
+  />
+);
 
-const PrevArrow = (props: any) => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      onClick={onClick}
-      style={{
-        ...style,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "40px",
-        height: "40px",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        borderRadius: "50%",
-        color: "white",
-        zIndex: 1,
-        cursor: "pointer",
-        left: "10px",
-        top: "50%",
-        transform: "translateY(-50%)",
-      }}
-    ></div>
-  );
-};
+const NextArrow = (props: any) => <Arrow {...props} direction="next" />;
+const PrevArrow = (props: any) => <Arrow {...props} direction="prev" />;
 
 export const ProductSlider = ({ images }: ProductSliderProps) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   return (
-    <div
-      style={{
+    <Box
+      sx={{
+        maxWidth: isMobile ? "278px" : "500px",
         width: "100%",
-        maxWidth: "600px",
         margin: "0 auto",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
       <Slider {...settings}>
@@ -94,26 +71,24 @@ export const ProductSlider = ({ images }: ProductSliderProps) => {
           <div
             key={index}
             style={{
-              width: "200px",
-              height: "150px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
               overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <img
               src={image}
               alt={`Product image ${index + 1}`}
               style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
+                width: "100%",
+                height: "auto",
                 objectFit: "contain",
+                maxHeight: "500px",
               }}
             />
           </div>
         ))}
       </Slider>
-    </div>
+    </Box>
   );
 };
